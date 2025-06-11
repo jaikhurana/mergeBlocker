@@ -1,0 +1,16 @@
+name: Block PRs That Modify JSON or SLDD Files
+
+on:
+  pull_request:
+    paths:
+      - '**/*.json'
+      - '**/*.sldd'
+
+jobs:
+  blockJson:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Block merge due to forbidden file type
+        run: |
+          echo "❌ Merging .json or .sldd files through PR is not allowed."
+          exit 1
